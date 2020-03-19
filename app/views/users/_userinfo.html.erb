@@ -1,0 +1,24 @@
+<div class="container">
+	<div class="row">
+		<% if flash[:notice] %>
+			<p id="notice" class="text-success"><%= flash[:notice] %></p>
+		<% end %>
+		<div class="col-xs-3">
+			<h2>User info</h2>
+			<%= attachment_image_tag user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+			<table class="table col-xs-3">
+				<tbody>
+					<tr>
+						<th>name</th>
+						<th><%= user.name %></th>
+						<th></th>
+					</tr>
+					<tr>
+						<th>introduction</th>
+						<th><%= user.introduction %></th>
+					</tr>
+				</tbody>
+			</table>
+			<%= link_to edit_user_path(user.id) do %>
+				<button type="button" class="btn btn-default col-xs-12" aria-label="Left Align"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></button>
+			<% end %>

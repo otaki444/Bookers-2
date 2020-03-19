@@ -1,0 +1,22 @@
+<%= render 'users/userinfo', user: @user %>
+<%= render 'books/newbook', book: @booknew %>
+		<div class="col-xs-9">
+			<h2>Book detail</h2>
+			<table class="table">
+				<tbody>
+					<tr>
+						<td><%= attachment_image_tag @book.user, :profile_image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg" %></td>
+						<td><%= @book.title %></td>
+						<td><%= @book.body %></td>
+					  	<% if @book.user == current_user %>
+						<td><%= link_to "Edit", edit_book_path, class: "btn btn-success" %></td>
+						<td><%= link_to "Destroy", book_path, method: :delete, class: "btn btn-danger", data: { confirm: "本当に消しますか?" } %></td>
+					  	<% end %>
+					</tr>
+				</tbody>
+			</table>
+			<p class="text-right">CopyRight Infratop.inc</p>
+		</div>
+	</div>
+</div>
+
