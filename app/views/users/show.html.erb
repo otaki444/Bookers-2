@@ -1,3 +1,4 @@
+<div class="container">
 <%= render 'users/userinfo', user: @user %>
 <%= render 'books/newbook', book: @booknew %>
 		<div class="col-xs-9">
@@ -13,7 +14,7 @@
 				</thead>
 				<tbody>
 					<% @books.each do |book| %>
-					<% if book.user == current_user %>
+					<% if book.user.id == @user.id %>
 					<tr>
 						<td><%= attachment_image_tag book.user, :profile_image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg", size:'50x50' %></td>
 						<td>
