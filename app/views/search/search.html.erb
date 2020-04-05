@@ -1,0 +1,66 @@
+<% if @model == "user" %>
+  <h3>Search Users</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>image</th>
+            <th>name</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @records.each do |user| %>
+          <tr>
+            <td><%= attachment_image_tag user, :profile_image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg", size:'50x50' %></td>
+            <td><%= user.name %></td>
+            <td><%= link_to "Show", user_path(user.id) %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <p class="text-right">CopyRight Infratop.inc</p>
+<% end %>
+
+<% if @model == "book" %>
+  <h3>Search Books</h3>
+  <table class="table table-hover">
+   <thead>
+    <tr>
+      <th></th>
+      <th>Title</th>
+      <th>Opinion</th>
+      <th></th>
+      <th></th>
+     </tr>
+  </thead>
+   <tbody>
+    <% @records.each do |book| %>
+     <tr>
+      <td><%= link_to user_path(book.user.id) do %>
+         <%= attachment_image_tag book.user, :profile_image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg", size:'50x50' %>
+        <% end %>
+      </td>
+      <td><%= link_to book_path(book.id) do %>
+          <%= book.title %>
+          <% end %>
+      </td>
+      <td><%= book.body %></td>
+      <td><% if book.favorited_by?(current_user) %>
+            <%= link_to book_favorites_path(book), method: :delete do %>
+                <i class="fa fa-heart" aria-hidden="true" style="color: blue;"></i>
+                <%= book.favorites.count %>
+            <% end %>
+         <% else %>
+              <%= link_to book_favorites_path(book), method: :post do %>
+                 <i class="fa fa-heart-o" aria-hidden="true"></i>
+                <%= book.favorites.count %>
+              <% end %>
+         <% end %>
+      </td>
+      <td><p>コメント数 : <%= book.book_comments.count %></p></td>
+    </tr>
+    <% end %>
+    </tbody>
+  </table>
+<p class="text-right">CopyRight Infratop.inc</p>
+<% end %>
