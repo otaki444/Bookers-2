@@ -1,0 +1,8 @@
+<!-- コメントフォーム　-->
+<%= form_with model: [book, book_comment] ,remote: true do |f| %>
+<%#= form_for [@book, @book_comment] do |f| %>
+	<div>
+		<%= f.text_area :comment, rows:'5', class: "form-control",placeholder: "コメントをここに" %>
+	</div>
+	<%= f.submit "送信する", class: "btn btn btn-primary pull-right" %>
+<% end %>

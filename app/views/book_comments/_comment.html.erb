@@ -1,0 +1,13 @@
+<!-- コメント表示　-->
+<% book.book_comments.each do |book_comment| %>
+	<div class="comment-data">
+		<div class="comment-author">
+			<%= book_comment.user.name %>
+				<span class="comment-date"><%= book_comment.created_at.strftime('%Y/%m/%d') %></span>
+		</div>
+		<div class="comment"><%= book_comment.comment %></div>
+	</div>
+	<% if book_comment.user == current_user %>
+		<%= link_to "Destroy", book_book_comment_path(book_comment.id, book_comment.book.id), method: :delete, remote: true, class: "btn btn-danger" %>
+	<% end %>
+<% end %>
