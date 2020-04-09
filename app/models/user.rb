@@ -22,6 +22,11 @@ class User < ApplicationRecord
          end
          validates :name,    length: { in: 2..20 }
          validates :introduction,    length: { maximum: 50 }
+         validates :postal_code, presence: true
+         validates :prefecture_code, presence: true
+         validates :city, presence: true
+         validates :street, presence: true
+
          attachment :profile_image
 
          include JpPrefecture
